@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <p>pesan</p>
+        </div>
+        <input type="text" name="isi" id="isi" class="form-control">
+        <button type="button" id="submit">Send</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+        let text = document.querySelector('#isi')
+        let btn = document.querySelector('#submit')
+        let card = document.querySelector('.card')
+        btn.addEventListener('click', function () {
+            Send()
+        })
+        var socket = io.connect('http://localhost:8000');
+        socket.on('news', function (data) {
+            console.log(data);
+            socket.emit('my other event', { my: 'data' });
+        });
+
+        function Send() {
+            socket.emit('chatroom', text.value)
+            text.value = "" 
+        }
+
+        socket.on('chat', (data) => {
+            console.log(data)
+            appends(data)
+        })
+
+        function appends(message) {
+            let pelement = document.createElement("p")
+            let text = document.createTextNode(message)
+            pelement.append(text)
+            card.appendChild(pelement)            
+        }
+    </script>
+</body>
+
+</html>

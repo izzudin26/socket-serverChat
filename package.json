@@ -1,0 +1,23 @@
+{
+  "name": "socket-serve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izzudin26/socket-serverChat.git"
+  },
+  "author": "Izzudin Ar Rafiq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/izzudin26/socket-serverChat/issues"
+  },
+  "homepage": "https://github.com/izzudin26/socket-serverChat#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
